@@ -28,10 +28,6 @@ torch.manual_seed(args.random_seed)
 if args.cuda:
     torch.cuda.manual_seed(args.random_seed)
 
-
-if not args.step_between_clips:
-   args.step_between_clips =  args.frames_per_clip*2
-
 if args.dataset == "vimeo90K_septuplet":
     from dataset.vimeo90k_septuplet import get_loader
     test_loader = get_loader('test', args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)

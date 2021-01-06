@@ -150,7 +150,7 @@ new_video = [make_image(im_) for im_ in outputs]
 
 write_video_cv2(new_video , output_video , args.output_fps , (resizes[1] , resizes[0]))
 
-import os
-print("Writing to " , output_video.split(".")[0] + ".mp4")
-os.system('ffmpeg -hide_banner -loglevel warning -i %s %s'%(output_video , output_video.split(".")[0] + ".mp4"))
-os.remove(output_video)
+# import os
+# print("Writing to " , output_video.split(".")[0] + ".mp4")
+# os.system('ffmpeg -hide_banner -loglevel warning -i %s %s'%(output_video , output_video.split(".")[0] + ".mp4"))
+# os.remove(output_video)

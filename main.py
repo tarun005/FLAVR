@@ -59,10 +59,6 @@ torch.manual_seed(args.random_seed)
 if args.cuda:
     torch.cuda.manual_seed(args.random_seed)
 
-
-if not args.step_between_clips:
-   args.step_between_clips =  args.frames_per_clip*2
-
 if args.dataset == "vimeo90K_septuplet":
     from dataset.vimeo90k_septuplet import get_loader
     train_loader = get_loader('train', args.data_root, args.batch_size, shuffle=True, num_workers=args.num_workers)
@@ -106,17 +102,11 @@ def train(args, epoch):
         # Build input batch
         images = [img_.cuda() for img_ in images]
         gt = [gt_.cuda() for gt_ in gt_image]
-        # if args.n_outputs > 1:
-        #     assert isinstance(gt_image , list) , "Required > 1 GT Frames for %sx interpolation ... "%(args.n_outputs+1)
-        #     gt = [gt_.cuda() for gt_ in gt_image]
-        # else:
-        #     gt = gt_image.cuda()
 
         # Forward
         optimizer.zero_grad()
         out = model(images)
-
-        # if args.n_outputs > 1:
+        
         out = torch.cat(out)
         gt = torch.cat(gt)
 
@@ -162,12 +152,6 @@ def test(args, epoch, eval_alpha=0.5):
 
             images = [img_.cuda() for img_ in images]
             gt = [gt_.cuda() for gt_ in gt_image]
-
-            # if args.n_outputs > 1:
-            #     assert isinstance(gt_image , list)
-            #     gt = [gt_.cuda() for gt_ in gt_image]
-            # else:
-            #     gt = gt_image.cuda()
 
             out = model(images) ## images is a list of neighboring frames
             out = torch.cat(out)

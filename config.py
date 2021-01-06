@@ -12,19 +12,17 @@ def add_argument_group(name):
 data_arg = add_argument_group('Dataset')
 data_arg.add_argument('--dataset', type=str, default='vimeo90k')
 data_arg.add_argument('--data_root', type=str)
-data_arg.add_argument('--img_fmt', type=str, default='png')
 
 # Model
 model_choices = ["unet_18", "unet_34"]
 model_arg = add_argument_group('Model')
-model_arg.add_argument('--model', choices=model_choices, type=str, default='CAIN')
-model_arg.add_argument('--frames_per_clip' , type=int , default=30)
-model_arg.add_argument('--step_between_clips' , type=int , default=None)
+model_arg.add_argument('--model', choices=model_choices, type=str)
 model_arg.add_argument('--nbr_frame' , type=int , default=4)
 model_arg.add_argument('--nbr_width' , type=int , default=1)
 model_arg.add_argument('--joinType' , choices=["concat" , "add" , "none"], default="concat")
 model_arg.add_argument('--upmode' , choices=["transpose","upsample"], type=str, default="transpose")
-model_arg.add_argument('n_outputs' , type=int, default=1)
+model_arg.add_argument('n_outputs' , type=int, default=1,
+                        help="For k times FLAVR, use n_outputs k-1")
 
 # Training / test parameters
 learn_arg = add_argument_group('Learning')
@@ -35,7 +33,6 @@ learn_arg.add_argument('--beta1', type=float, default=0.9)
 learn_arg.add_argument('--beta2', type=float, default=0.99)
 learn_arg.add_argument('--batch_size', type=int, default=16)
 learn_arg.add_argument('--test_batch_size', type=int, default=1)
-learn_arg.add_argument('--test_mode', type=str, default='hard', help='Test mode to evaluate on SNU-FILM dataset')
 learn_arg.add_argument('--start_epoch', type=int, default=0)
 learn_arg.add_argument('--max_epoch', type=int, default=200)
 learn_arg.add_argument('--resume', action='store_true')
