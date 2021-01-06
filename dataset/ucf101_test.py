@@ -29,7 +29,7 @@ class UCF_triplet(Dataset):
         images = [Image.open(img) for img in imgpaths]
         images = [self.transforms(img) for img in images]
 
-        return images[:-1] , images[-1]
+        return images[:-1] , [images[-1]]
 
     def __len__(self):
 

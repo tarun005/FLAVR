@@ -16,7 +16,7 @@ data_arg.add_argument('--data_root', type=str)
 # Model
 model_choices = ["unet_18", "unet_34"]
 model_arg = add_argument_group('Model')
-model_arg.add_argument('--model', choices=model_choices, type=str)
+model_arg.add_argument('--model', choices=model_choices, type=str, default="unet_18")
 model_arg.add_argument('--nbr_frame' , type=int , default=4)
 model_arg.add_argument('--nbr_width' , type=int , default=1)
 model_arg.add_argument('--joinType' , choices=["concat" , "add" , "none"], default="concat")

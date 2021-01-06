@@ -72,6 +72,7 @@ def test(args):
 
             start_time = time.time()
             out = model(images)
+
             out = torch.cat(out)
             gt = torch.cat(gt)
 

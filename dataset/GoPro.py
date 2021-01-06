@@ -55,8 +55,6 @@ class GoPro(Dataset):
         gt_images = [Image.open(pth_) for pth_ in gt_paths]
         gt_images = [self.transforms(img_) for img_ in gt_images] 
 
-        # gt_images = [gt_images[i] for i in [2,3,4]] 
-
         return images , gt_images
 
     def __len__(self):

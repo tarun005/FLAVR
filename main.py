@@ -20,7 +20,7 @@ from loss import Loss
 
 from torch.utils.data import DataLoader
 
-os.environ["CUDA_VISIBLE_DEVICES"] = str(7)
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 
 def load_checkpoint(args, model, optimizer , path):
     print("loading checkpoint %s" % path)
@@ -47,9 +47,8 @@ with open(opts_file , "w") as fh:
 
 
 ##### TensorBoard & Misc Setup #####
-if args.mode != 'test':
-    writer_loc = os.path.join(args.checkpoint_dir , 'tensorboard_logs_%s_final/%s' % (args.dataset , args.exp_name))
-    writer = SummaryWriter(writer_loc)
+writer_loc = os.path.join(args.checkpoint_dir , 'tensorboard_logs_%s_final/%s' % (args.dataset , args.exp_name))
+writer = SummaryWriter(writer_loc)
 
 device = torch.device('cuda' if args.cuda else 'cpu')
 torch.backends.cudnn.enabled = True
@@ -126,7 +125,7 @@ def train(args, epoch):
             myutils.eval_metrics(out, gt, psnrs, ssims)
 
             print('Train Epoch: {} [{}/{}]\tLoss: {:.6f}\tPSNR: {:.4f}'.format(
-                epoch, i, len(train_loader), losses['total'].avg, psnrs.avg , flush=True)
+                epoch, i, len(train_loader), losses['total'].avg, psnrs.avg , flush=True))
             
             # Log to TensorBoard
             timestep = epoch * len(train_loader) + i
@@ -193,12 +192,15 @@ def test(args, epoch, eval_alpha=0.5):
 def main(args):
 
     if args.pretrained:
-        loadStateDict = torch.load(args.pretrained)
+        loadStateDict = torch.load(args.pretrained)['state_dict']
         modelStateDict = model.state_dict()
 
-        for k,v in load_state_dict.items():
+        for k,v in loadStateDict.items():
             if v.shape == modelStateDict[k].shape:
+                print("Loading " , k)
                 modelStateDict[k] = v
+            else:
+                print("Not loading" , k)
 
         model.load_state_dict(modelStateDict)
 
