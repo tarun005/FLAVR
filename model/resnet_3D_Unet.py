@@ -5,6 +5,8 @@ import torch.nn as nn
 
 __all__ = ['unet_18', 'unet_34']
 
+useBias = False
+
 class identity(nn.Module):
 
     def __init__(self , *args , **kwargs):
@@ -28,7 +30,7 @@ class Conv3DSimple(nn.Conv3d):
             kernel_size=(3, 3, 3),
             stride=stride,
             padding=padding,
-            bias=False)
+            bias=useBias)
 
     @staticmethod
     def get_downsample_stride(stride , temporal_stride):
@@ -43,7 +45,7 @@ class BasicStem(nn.Sequential):
     def __init__(self):
         super().__init__(
             nn.Conv3d(3, 64, kernel_size=(3, 7, 7), stride=(1, 2, 2),
-                padding=(1, 3, 3), bias=False),
+                padding=(1, 3, 3), bias=useBias),
             batchnorm(64),
             nn.ReLU(inplace=False))
 

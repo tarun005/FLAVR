@@ -123,6 +123,8 @@ class UNet_3D_3D(nn.Module):
         self.lrelu = nn.LeakyReLU(0.2, True)
 
         unet_3D = importlib.import_module(".resnet_3D_Unet" , "model")
+        if n_outputs > 1:
+            unet_3D.useBias = True
         self.encoder = getattr(unet_3D , block)(pretrained=False , bn=batchnorm)            
 
         self.decoder = nn.Sequential(
