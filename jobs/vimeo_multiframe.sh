@@ -46,3 +46,4 @@ fi
 cd ${save_loc}/files/
 
 srun --label /private/home/tarun05/.conda/envs/TSR/bin/python main.py --exp_name ${exp_name} --batch_size 16 --test_batch_size 16 --dataset ${dataset} --model unet_18 --loss 1*L1 --max_epoch 200 --lr 0.0002 --data_root ${data_root} --checkpoint_dir /checkpoint/tarun05/ --upmode transpose --n_outputs 3
+

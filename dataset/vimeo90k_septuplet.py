@@ -77,7 +77,7 @@ class VimeoSepTuplet(Dataset):
         gt = images[len(images)//2]
         images = images[:len(images)//2] + images[len(images)//2+1:]
         
-        return images, gt
+        return images, [gt]
 
     def __len__(self):
         if self.training:

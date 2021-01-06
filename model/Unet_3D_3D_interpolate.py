@@ -170,12 +170,9 @@ class UNet_3D_3D(nn.Module):
         out = self.lrelu(self.feature_fuse(dx_out))
         out = self.outconv(out)
 
-        if self.n_outputs > 1:
-            out = torch.split(out, dim=1, split_size_or_sections=3)
-            mean_ = mean_.squeeze(2)
-            out = [o+mean_ for o in out]
-        else:
-            out += mean_.squeeze(2)
+        out = torch.split(out, dim=1, split_size_or_sections=3)
+        mean_ = mean_.squeeze(2)
+        out = [o+mean_ for o in out]
  
         return out
 

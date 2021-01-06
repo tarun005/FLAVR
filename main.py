@@ -94,10 +94,8 @@ print('# of parameters: %d' % sum(p.numel() for p in model.parameters()))
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
     optimizer, mode='min', factor=0.5, patience=5, verbose=True)
 
-LOSS_0 = 0
 
 def train(args, epoch):
-    global LOSS_0
     losses, psnrs, ssims = myutils.init_meters(args.loss)
     model.train()
     criterion.train()
@@ -107,19 +105,20 @@ def train(args, epoch):
 
         # Build input batch
         images = [img_.cuda() for img_ in images]
-        if args.n_outputs > 1:
-            assert isinstance(gt_image , list) , "Required > 1 GT Frames for %sx interpolation ... "%(args.n_outputs+1)
-            gt = [gt_.cuda() for gt_ in gt_image]
-        else:
-            gt = gt_image.cuda()
+        gt = [gt_.cuda() for gt_ in gt_image]
+        # if args.n_outputs > 1:
+        #     assert isinstance(gt_image , list) , "Required > 1 GT Frames for %sx interpolation ... "%(args.n_outputs+1)
+        #     gt = [gt_.cuda() for gt_ in gt_image]
+        # else:
+        #     gt = gt_image.cuda()
 
         # Forward
         optimizer.zero_grad()
         out = model(images)
 
-        if args.n_outputs > 1:
-            out = torch.cat(out)
-            gt = torch.cat(gt)
+        # if args.n_outputs > 1:
+        out = torch.cat(out)
+        gt = torch.cat(gt)
 
         loss, loss_specific = criterion(out, gt)
         
@@ -127,8 +126,6 @@ def train(args, epoch):
         for k, v in losses.items():
             if k != 'total':
                 v.update(loss_specific[k].item())
-        if LOSS_0 == 0:
-            LOSS_0 = loss.data.item()
         losses['total'].update(loss.item())
 
         loss.backward()
@@ -138,8 +135,8 @@ def train(args, epoch):
         if i % args.log_iter == 0: 
             myutils.eval_metrics(out, gt, psnrs, ssims)
 
-            print('Train Epoch: {} [{}/{}]\tLoss: {:.6f}\tPSNR: {:.4f}\tTime({:.2f})'.format(
-                epoch, i, len(train_loader), losses['total'].avg, psnrs.avg, time.time() - t) , flush=True)
+            print('Train Epoch: {} [{}/{}]\tLoss: {:.6f}\tPSNR: {:.4f}'.format(
+                epoch, i, len(train_loader), losses['total'].avg, psnrs.avg , flush=True)
             
             # Log to TensorBoard
             timestep = epoch * len(train_loader) + i
@@ -164,16 +161,17 @@ def test(args, epoch, eval_alpha=0.5):
         for i, (images, gt_image) in enumerate(tqdm(test_loader)):
 
             images = [img_.cuda() for img_ in images]
-            if args.n_outputs > 1:
-                assert isinstance(gt_image , list)
-                gt = [gt_.cuda() for gt_ in gt_image]
-            else:
-                gt = gt_image.cuda()
-            out = model(images) ## images is a list of neighboring frames
+            gt = [gt_.cuda() for gt_ in gt_image]
 
-            if args.n_outputs > 1:
-                out = torch.cat(out)
-                gt = torch.cat(gt)
+            # if args.n_outputs > 1:
+            #     assert isinstance(gt_image , list)
+            #     gt = [gt_.cuda() for gt_ in gt_image]
+            # else:
+            #     gt = gt_image.cuda()
+
+            out = model(images) ## images is a list of neighboring frames
+            out = torch.cat(out)
+            gt = torch.cat(gt)
 
             # Save loss values
             loss, loss_specific = criterion(out, gt)

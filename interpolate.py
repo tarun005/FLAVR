@@ -79,7 +79,6 @@ def write_video_cv2(frames , video_name , fps , sizes):
 
     out = cv2.VideoWriter(video_name,cv2.CAP_OPENCV_MJPEG,cv2.VideoWriter_fourcc('M','J','P','G'), fps, sizes)
 
-    print("Writing to " , video_name)
     for frame in frames:
         out.write(frame)
 
@@ -142,12 +141,9 @@ for i in tqdm.tqdm(range(len(idxs))):
     idxSet = idxs[i]
     inputs = [frames[idx_].cuda().unsqueeze(0) for idx_ in idxSet]
     with torch.no_grad():
-        outputFrame = model(inputs) 
-    if n_outputs == 1:
-        outputs.extend([outputFrame.squeeze(0).cpu().data])
-    else:    
-        outputFrame = [of.squeeze(0).cpu().data for of in outputFrame]
-        outputs.extend(outputFrame)
+        outputFrame = model(inputs)   
+    outputFrame = [of.squeeze(0).cpu().data for of in outputFrame]
+    outputs.extend(outputFrame)
     outputs.append(inputs[2].squeeze(0).cpu().data)
 
 new_video = [make_image(im_) for im_ in outputs]
@@ -155,4 +151,6 @@ new_video = [make_image(im_) for im_ in outputs]
 write_video_cv2(new_video , output_video , args.output_fps , (resizes[1] , resizes[0]))
 
 import os
-os.system('ffmpeg -i %s %s'%(output_video , output_video.split(".")[0] + ".mp4"))
+print("Writing to " , output_video.split(".")[0] + ".mp4")
+os.system('ffmpeg -hide_banner -loglevel warning -i %s %s'%(output_video , output_video.split(".")[0] + ".mp4"))
+os.remove(output_video)

@@ -72,17 +72,12 @@ def test(args):
         for i, (images, gt_image ) in enumerate(tqdm(test_loader)):
 
             images = [img_.cuda() for img_ in images]
-            if isinstance(gt_image , list):
-                gt = [g_.cuda() for g_ in gt_image]
-            else:
-                gt = gt_image.cuda()
+            gt = [g_.cuda() for g_ in gt_image]
 
             start_time = time.time()
             out = model(images)
-
-            if args.n_outputs > 1:
-                out = torch.cat(out)
-                gt = torch.cat(gt)
+            out = torch.cat(out)
+            gt = torch.cat(gt)
 
             time_taken.append(time.time() - start_time)
 
