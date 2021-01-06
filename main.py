@@ -71,7 +71,7 @@ else:
     raise NotImplementedError
 
 
-from model.Unet_3D_3D_interpolate import UNet_3D_3D
+from model.Unet_3D_3D_interpolate_train import UNet_3D_3D
 print("Building model: %s"%args.model.lower())
 model = UNet_3D_3D(args.model.lower() , n_inputs=args.nbr_frame, n_outputs=args.n_outputs, joinType=args.joinType, upmode=args.upmode)
 
@@ -191,11 +191,16 @@ def test(args, epoch, eval_alpha=0.5):
 
 """ Entry Point """
 def main(args):
-    if args.mode == 'test':
-        assert args.load_from is not None
-        load_checkpoint(args, model, optimizer)
-        _, _, _, _ = test(args, args.start_epoch)
-        return
+
+    if args.pretrained:
+        loadStateDict = torch.load(args.pretrained)
+        modelStateDict = model.state_dict()
+
+        for k,v in load_state_dict.items():
+            if v.shape == modelStateDict[k].shape:
+                modelStateDict[k] = v
+
+        model.load_state_dict(modelStateDict)
 
     best_psnr = 0
     for epoch in range(args.start_epoch, args.max_epoch):

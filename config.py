@@ -26,7 +26,6 @@ model_arg.add_argument('n_outputs' , type=int, default=1,
 
 # Training / test parameters
 learn_arg = add_argument_group('Learning')
-learn_arg.add_argument('--mode', type=str, default='train',choices=['train', 'test'])
 learn_arg.add_argument('--loss', type=str, default='1*L1')
 learn_arg.add_argument('--lr', type=float, default=1e-4)
 learn_arg.add_argument('--beta1', type=float, default=0.9)
@@ -39,6 +38,8 @@ learn_arg.add_argument('--resume', action='store_true')
 learn_arg.add_argument('--resume_exp', type=str, default=None)
 learn_arg.add_argument('--checkpoint_dir', type=str , required=True)
 learn_arg.add_argument("--load_from"  ,type=str , default=None)
+learn_arg.add_argument("--pretrained" , type=str,
+                        help="Load from a pretrained model.")
 
 # Misc
 misc_arg = add_argument_group('Misc')
