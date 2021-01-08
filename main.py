@@ -89,6 +89,18 @@ print('# of parameters: %d' % sum(p.numel() for p in model.parameters()))
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
     optimizer, mode='min', factor=0.5, patience=5, verbose=True)
 
+# Signal handler for slurm scheduler.
+def sig_handler(signum, frame):
+    print("caught signal", signum)
+    print(socket.gethostname(), "USR1 signal caught.")
+    print('requeuing job ' + os.environ['SLURM_JOB_ID'] , flush=True)
+    os.system('scontrol requeue ' + os.environ['SLURM_JOB_ID'])
+    sys.exit(-1)
+def term_handler(signum, frame):
+    print("bypassing sigterm", flush=True)
+signal.signal(signal.SIGUSR1, sig_handler)
+signal.signal(signal.SIGTERM, term_handler)
+print('signal installed', flush=True)
 
 def train(args, epoch):
     losses, psnrs, ssims = myutils.init_meters(args.loss)
