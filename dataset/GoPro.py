@@ -42,6 +42,8 @@ class GoPro(Dataset):
         if random.random() > 0.5:
             imgpaths = imgpaths[::-1] ## random temporal flip
 
+        # We can use compression based augmentations
+
         pick_idxs = list(range(0,self.setLength,self.interFrames+1))
         rem = self.interFrames%2
         gt_idx = list(range(self.setLength//2-self.interFrames//2 , self.setLength//2+self.interFrames//2+rem)) 

@@ -33,6 +33,7 @@ export exp_name=unetMF_ip4_op7_resnet18_gopro
 export dataset=gopro
 export save_loc=/checkpoint/tarun05/saved_models/gopro/${exp_name}/
 export data_root=/private/home/tarun05/SuperSloMo/eval_code/data/Adobe240FPS_13frame/
+export pretrained=
 
 if [ ! -d ${save_loc}/files/ ] 
 then
@@ -45,4 +46,4 @@ then
 fi
 cd ${save_loc}/files/
 
-srun --label /private/home/tarun05/.conda/envs/TSR/bin/python main.py --exp_name ${exp_name} --batch_size 32 --test_batch_size 32 --dataset ${dataset} --model unet_18 --loss 1*L1 --max_epoch 200 --lr 0.0002 --data_root ${data_root} --checkpoint_dir ${save_loc} --upmode transpose --n_outputs 7 --pretrained ${pretrained}
+srun --label /private/home/tarun05/.conda/envs/TSR/bin/python main.py --exp_name ${exp_name} --batch_size 40 --test_batch_size 40 --dataset ${dataset} --model unet_18 --loss 1*L1 --max_epoch 200 --lr 0.0002 --data_root ${data_root} --checkpoint_dir ${save_loc} --upmode transpose --n_outputs 7 --pretrained ${pretrained}
