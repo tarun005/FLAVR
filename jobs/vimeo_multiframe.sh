@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=unetMF_ip4_op3_resnet18_adobe_gating_noPT
+#SBATCH --job-name=unetMF_ip4_op7_resnet18_adobe_gating_noPT
 
 #SBATCH --output=/checkpoint/tarun05/slurm_logs/GoPro/%x.out
 
@@ -29,7 +29,7 @@ source ~/init.sh
 source activate TSR
 
 cd ~/projects/SuperResolution_Video/
-export exp_name=unetMF_ip4_op3_resnet18_adobe_gating_noPT
+export exp_name=unetMF_ip4_op7_resnet18_gopro
 export dataset=gopro
 export save_loc=/checkpoint/tarun05/saved_models/gopro/${exp_name}/
 export data_root=/private/home/tarun05/SuperSloMo/eval_code/data/Adobe240FPS_13frame/
