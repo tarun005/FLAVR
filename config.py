@@ -49,6 +49,7 @@ misc_arg.add_argument('--num_gpu', type=int, default=1)
 misc_arg.add_argument('--random_seed', type=int, default=12345)
 misc_arg.add_argument('--num_workers', type=int, default=16)
 misc_arg.add_argument('--use_tensorboard', action='store_true')
+misc_arg.add_argument('--val_freq', type=int, default=2)
 
 def get_args():
     """Parses all of the arguments above

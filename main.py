@@ -20,7 +20,7 @@ from loss import Loss
 
 from torch.utils.data import DataLoader
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+#os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 
 def load_checkpoint(args, model, optimizer , path):
     print("loading checkpoint %s" % path)
@@ -208,7 +208,7 @@ def main(args):
     for epoch in range(args.start_epoch, args.max_epoch):
         train(args, epoch)
 
-        if epoch % 2 == 0:
+        if epoch % args.val_freq == 0:
             test_loss, psnr, _ = test(args, epoch)
 
         # save checkpoint
