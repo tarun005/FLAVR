@@ -97,40 +97,6 @@ class R2Plus1dStem(nn.Sequential):
             nn.ReLU(inplace=True))
 
 
-class Conv3DNoTemporal(nn.Conv3d):
-
-    def __init__(self,
-                 in_planes,
-                 out_planes,
-                 midplanes=None,
-                 stride=1,
-                 padding=1):
-
-        if not isinstance(stride , int):
-            _ , stride , stride = stride        
-
-        super(Conv3DNoTemporal, self).__init__(
-            in_channels=in_planes,
-            out_channels=out_planes,
-            kernel_size=(1, 3, 3),
-            stride=(1, stride, stride),
-            padding=(0, padding, padding),
-            bias=False)
-
-    @staticmethod
-    def get_downsample_stride(stride , temporal_stride): # temporal_stride is a placeholder
-        return (1, stride, stride)
-
-class mc3Stem(nn.Sequential):
-    """The default conv-batchnorm-relu stem
-    """
-    def __init__(self):
-        super().__init__(
-            nn.Conv3d(3, 64, kernel_size=(1, 7, 7), stride=(1, 2, 2),
-                      padding=(0, 3, 3), bias=False),
-            batchnorm(64),
-            nn.ReLU(inplace=True))
-
 class SEGating(nn.Module):
 
     def __init__(self , inplanes , reduction=16):
