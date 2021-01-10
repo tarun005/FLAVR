@@ -20,7 +20,7 @@ from loss import Loss
 
 from torch.utils.data import DataLoader
 
-#os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 
 def load_checkpoint(args, model, optimizer , path):
     print("loading checkpoint %s" % path)
@@ -190,12 +190,10 @@ def test(args, epoch, eval_alpha=0.5):
                 (psnrs.avg, ssims.avg))
 
     # Log to TensorBoard
-    if args.mode != 'test':
-
-        timestep = epoch +1
-        writer.add_scalar('Loss/test', loss.data.item(), timestep)
-        writer.add_scalar('PSNR/test', psnrs.avg, timestep)
-        writer.add_scalar('SSIM/test', ssims.avg, timestep)
+    timestep = epoch +1
+    writer.add_scalar('Loss/test', loss.data.item(), timestep)
+    writer.add_scalar('PSNR/test', psnrs.avg, timestep)
+    writer.add_scalar('SSIM/test', ssims.avg, timestep)
 
     return losses['total'].avg, psnrs.avg, ssims.avg
 
@@ -220,7 +218,7 @@ def main(args):
     for epoch in range(args.start_epoch, args.max_epoch):
         train(args, epoch)
 
-        if epoch % args.val_freq == 0:
+        if epoch +1 % args.val_freq == 0:
             test_loss, psnr, _ = test(args, epoch)
 
         # save checkpoint
