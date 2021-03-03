@@ -13,7 +13,7 @@ Current version is tested on
 
 ## Model
 
-<center><img src="./figures/arch_dia.pdf" width="90%"></center>
+<center><img src="./figures/arch_dia.png" width="90%"></center>
 
 ## Training model on Vimeo-90K septuplets
 
