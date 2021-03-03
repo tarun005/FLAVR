@@ -36,7 +36,7 @@ python test.py --dataset vimeo90K_septuplet --data_root <data_path> --load_from 
 For testing a multiframe interpolation model, download the model trained on GoPro data [here](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing) and use the same command as above, with `n_outputs` changed to 7.
 
 ### Time Benchmarking
-The testing script, in addition to computing PSNR and SSIM values, should also output the inference time and speed for interpolation. 
+The testing script, in addition to computing PSNR and SSIM values, will also output the inference time and speed for interpolation. 
 
 ### Evaluation on Middleburry
 
