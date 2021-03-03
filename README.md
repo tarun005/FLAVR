@@ -1,5 +1,8 @@
 # FLAVR
 
+![Eg1](./figures/gif1.gif)
+![Eg2](./figures/gif2.gif)
+
 FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories. This repository contains original source code for the paper accepted to CVPR 2021. PDF of the paper is available at [here](https://tarun005.github.io/files/papers/2012.08512.pdf) and more results are available in the [project video.](https://tarun005.github.io/files/papers/2012.08512.pdf)
 
 ## Dependencies
