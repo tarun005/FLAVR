@@ -54,6 +54,15 @@ python interpolate.py --input_video <input_video> --factor <2/4/8> --load_model 
 
 Use a 2x interpolation model if the `factor` is 2 and 8x interpolation model if the `factor` is 8.
 
+## Baseline Models
+
+We also train models for many other previous works on our setting, and provide models for all these methods. Complete benchmarking scripts will also be released soon.
+
+ Method        | PSNR on Vimeo           | Trained Model  |
+| ------------- |:-------------:| -----:|
+| AdaCoF      | 35.3 |  |
+| QVI      |   35.15    |    |
+| DAIN |   34.19   |   |
 
 ## Google Colab
 
