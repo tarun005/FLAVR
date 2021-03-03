@@ -73,7 +73,7 @@ Coming soon ... !
 
 ## Acknowledgement
 
-The code is heavily borrowed from Facebook's official [PyTorch video repository](https://github.com/facebookresearch/VMZ) and [CAIN](https://github.com/myungsub/CAIN).
+The code is heavily borrowed from Facebook's official [PyTorch video repository](https://github.com/facebookresearch/VMZ) and CAIN.
 
 ## Cite
 
