@@ -16,9 +16,8 @@ import myutils
 
 from torch.utils.data import DataLoader
 
-
 ##### Parse CmdLine Arguments #####
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
+os.environ["CUDA_VISIBLE_DEVICES"]='7'
 args, unparsed = config.get_args()
 cwd = os.getcwd()
 
@@ -31,15 +30,6 @@ if args.cuda:
 if args.dataset == "vimeo90K_septuplet":
     from dataset.vimeo90k_septuplet import get_loader
     test_loader = get_loader('test', args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)
-elif args.dataset == "ucf101":
-    from dataset.ucf101_test import get_loader
-    test_loader = get_loader(args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)   
-elif args.dataset == "davis":
-    from dataset.Davis_test import get_loader
-    test_loader = get_loader(args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)     
-elif args.dataset == "snu":
-    from dataset.snufilm import get_loader
-    test_loader = get_loader(args.test_mode , args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 elif args.dataset == "gopro":
     from dataset.GoPro import get_loader
     test_loader = get_loader(args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers, test_mode=True, interFrames=args.n_outputs)    
@@ -51,15 +41,12 @@ from model.Unet_3D_3D_interpolate import UNet_3D_3D
 print("Building model: %s"%args.model.lower())
 model = UNet_3D_3D(args.model.lower() , n_inputs=args.nbr_frame, n_outputs=args.n_outputs, joinType=args.joinType)
 
-
-# Just make every model to DataParallel
 model = torch.nn.DataParallel(model).to(device)
 print("#params" , sum([p.numel() for p in model.parameters()]))
 
 
 def test(args):
     time_taken = []
-    img_save_id = 0
     losses, psnrs, ssims = myutils.init_meters(args.loss)
     model.eval()
 
@@ -80,12 +67,11 @@ def test(args):
 
             myutils.eval_metrics(out, gt, psnrs, ssims)
 
-
-    print("PSNR: %f, SSIM: %f\n" %
+    print("PSNR: %f, SSIM: %fn" %
           (psnrs.avg, ssims.avg))
     print("Time , " , sum(time_taken)/len(time_taken))
 
-    return
+    return psnrs.avg
 
 
 """ Entry Point """

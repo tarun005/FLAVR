@@ -146,7 +146,7 @@ class UNet_3D_3D(nn.Module):
 
         images = torch.stack(images , dim=2)
 
-        ## Batch mean normalization works better than global mean normalization, thanks to https://github.com/myungsub/CAIN
+        ## Batch mean normalization works slightly better than global mean normalization, thanks to https://github.com/myungsub/CAIN
         mean_ = images.mean(2, keepdim=True).mean(3, keepdim=True).mean(4,keepdim=True)
         images = images-mean_ 
 

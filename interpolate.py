@@ -34,7 +34,6 @@ args = parser.parse_args()
 
 input_video = args.input_video
 input_ext = args.input_ext
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 if args.output_ext != ".avi":
     print("Currently supporting only writing to avi. Try using ffmpeg for conversion to mp4 etc.")
@@ -82,7 +81,6 @@ def write_video_cv2(frames , video_name , fps , sizes):
 
 
 def make_image(img):
-    # img = F.interpolate(img.unsqueeze(0) , (720,1280) , mode="bilinear").squeeze(0)
     q_im = img.data.mul(255.).clamp(0,255).round()
     im = q_im.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
     im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)

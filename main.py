@@ -1,13 +1,6 @@
 import os
 import sys
 import time
-import copy
-import shutil
-import random
-import signal
-import socket
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
 
 import torch
 import numpy as np
@@ -17,10 +10,7 @@ from torch.utils.tensorboard import SummaryWriter
 import config
 import myutils
 from loss import Loss
-
 from torch.utils.data import DataLoader
-
-os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 
 def load_checkpoint(args, model, optimizer , path):
     print("loading checkpoint %s" % path)
@@ -65,16 +55,14 @@ if args.dataset == "vimeo90K_septuplet":
 elif args.dataset == "gopro":
     from dataset.GoPro import get_loader
     train_loader = get_loader(args.data_root, args.batch_size, shuffle=True, num_workers=args.num_workers, test_mode=False, interFrames=args.n_outputs, n_inputs=args.nbr_frame)
-    #test_loader = get_loader(args.data_root, args.batch_size, shuffle=False, num_workers=args.num_workers, test_mode=True, interFrames=args.n_outputs, n_inputs=args.nbr_frame)
+    test_loader = get_loader(args.data_root, args.batch_size, shuffle=False, num_workers=args.num_workers, test_mode=True, interFrames=args.n_outputs, n_inputs=args.nbr_frame)
 else:
     raise NotImplementedError
 
 
-from model.Unet_3D_3D_interpolate_train import UNet_3D_3D
+from model.Unet_3D_3D_interpolate import UNet_3D_3D
 print("Building model: %s"%args.model.lower())
 model = UNet_3D_3D(args.model.lower() , n_inputs=args.nbr_frame, n_outputs=args.n_outputs, joinType=args.joinType, upmode=args.upmode)
-
-# Just make every model to DataParallel
 model = torch.nn.DataParallel(model).to(device)
 
 ##### Define Loss & Optimizer #####
@@ -83,24 +71,7 @@ criterion = Loss(args)
 ## ToDo: Different learning rate schemes for different parameters
 from torch.optim import Adam
 optimizer = Adam(model.parameters(), lr=args.lr, betas=(args.beta1, args.beta2))
-print('# of parameters: %d' % sum(p.numel() for p in model.parameters()))
-
-# Learning Rate Scheduler
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-    optimizer, mode='min', factor=0.5, patience=5, verbose=True)
-
-# Signal handler for slurm scheduler.
-def sig_handler(signum, frame):
-    print("caught signal", signum)
-    print(socket.gethostname(), "USR1 signal caught.")
-    print('requeuing job ' + os.environ['SLURM_JOB_ID'] , flush=True)
-    os.system('scontrol requeue ' + os.environ['SLURM_JOB_ID'])
-    sys.exit(-1)
-def term_handler(signum, frame):
-    print("bypassing sigterm", flush=True)
-signal.signal(signal.SIGUSR1, sig_handler)
-signal.signal(signal.SIGTERM, term_handler)
-print('signal installed', flush=True)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=True)
 
 def train(args, epoch):
     losses, psnrs, ssims = myutils.init_meters(args.loss)
@@ -151,7 +122,7 @@ def train(args, epoch):
             t = time.time()
 
 
-def test(args, epoch, eval_alpha=0.5):
+def test(args, epoch):
     print('Evaluating for epoch = %d' % epoch)
     losses, psnrs, ssims = myutils.init_meters(args.loss)
     model.eval()
@@ -202,6 +173,7 @@ def test(args, epoch, eval_alpha=0.5):
 def main(args):
 
     if args.pretrained:
+        ## For low data, it is better to load from a supervised pretrained model
         loadStateDict = torch.load(args.pretrained)['state_dict']
         modelStateDict = model.state_dict()
 

@@ -38,7 +38,7 @@ class Davis(Dataset):
         images = [Image.open(img) for img in imgpaths]
         images = [self.transforms(img) for img in images]
 
-        return images[:2] + images[3:] , images[2]
+        return images[:2] + images[3:] , [images[2]]
 
     def __len__(self):
 

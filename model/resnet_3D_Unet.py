@@ -1,4 +1,4 @@
-# Modified from https://github.com/pytorch/vision/blob/master/torchvision/models/video/resnet.py
+# Modified from https://github.com/pytorch/vision/tree/master/torchvision/models/video
 
 import torch
 import torch.nn as nn
@@ -229,6 +229,7 @@ class VideoResNet(nn.Module):
 
 def _video_resnet(arch, pretrained=False, progress=True, **kwargs):
     model = VideoResNet(**kwargs)
+    ## TODO: Other 3D resnet models, like S3D, r(2+1)D.
 
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls[arch],

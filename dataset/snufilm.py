@@ -1,3 +1,4 @@
+## Imported from https://github.com/myungsub/CAIN/blob/master/data/snufilm.py
 import os
 
 import torch

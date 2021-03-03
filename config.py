@@ -22,12 +22,12 @@ model_arg.add_argument('--nbr_width' , type=int , default=1)
 model_arg.add_argument('--joinType' , choices=["concat" , "add" , "none"], default="concat")
 model_arg.add_argument('--upmode' , choices=["transpose","upsample"], type=str, default="transpose")
 model_arg.add_argument('n_outputs' , type=int, default=1,
-                        help="For k times FLAVR, use n_outputs k-1")
+                        help="For Kx FLAVR, use n_outputs k-1")
 
 # Training / test parameters
 learn_arg = add_argument_group('Learning')
 learn_arg.add_argument('--loss', type=str, default='1*L1')
-learn_arg.add_argument('--lr', type=float, default=1e-4)
+learn_arg.add_argument('--lr', type=float, default=2e-4)
 learn_arg.add_argument('--beta1', type=float, default=0.9)
 learn_arg.add_argument('--beta2', type=float, default=0.99)
 learn_arg.add_argument('--batch_size', type=int, default=16)
@@ -36,7 +36,7 @@ learn_arg.add_argument('--start_epoch', type=int, default=0)
 learn_arg.add_argument('--max_epoch', type=int, default=200)
 learn_arg.add_argument('--resume', action='store_true')
 learn_arg.add_argument('--resume_exp', type=str, default=None)
-learn_arg.add_argument('--checkpoint_dir', type=str , required=True)
+learn_arg.add_argument('--checkpoint_dir', type=str ,default=".")
 learn_arg.add_argument("--load_from"  ,type=str , default=None)
 learn_arg.add_argument("--pretrained" , type=str,
                         help="Load from a pretrained model.")

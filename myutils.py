@@ -15,7 +15,7 @@ def init_meters(loss_str):
     return losses, psnrs, ssims
 
 def eval_metrics(output, gt, psnrs, ssims):
-    # PSNR should be calculated for each image, since sum(log) != log(sum).
+    # PSNR should be calculated for each image, since sum(log) =/= log(sum).
     for b in range(gt.size(0)):
         psnr = calc_psnr(output[b], gt[b])
         psnrs.update(psnr)
