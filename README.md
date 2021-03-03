@@ -4,7 +4,7 @@ FLAVR is a fast, flow-free frame interpolation method capable of single shot mul
 
 ## Dependencies
 
-Current version is tested on
+We used the following to train and test the model.
 
 - Ubuntu 18.04
 - Python==3.7.4
@@ -60,9 +60,9 @@ We also train models for many other previous works on our setting, and provide m
 
  Method        | PSNR on Vimeo           | Trained Model  |
 | ------------- |:-------------:| -----:|
-| AdaCoF      | 35.3 |  |
-| QVI      |   35.15    |    |
-| DAIN |   34.19   |   |
+| AdaCoF      | 35.3 | [Model](https://drive.google.com/file/d/19Y2TDZkSbRgNu-OItvqk3qn5cBWGg1RT/view?usp=sharing) |
+| QVI      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
+| DAIN |   34.19   | [Model](https://drive.google.com/file/d/1RfrwrHoSX_3RIdsoQgPg9IfGAJRhOoEp/view?usp=sharing)  |
 
 ## Google Colab
 
