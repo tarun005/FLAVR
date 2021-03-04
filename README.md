@@ -3,7 +3,9 @@
 ![Eg1](./figures/baloon.gif)
 ![Eg2](./figures/sprite.gif)
 
-FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories. This repository contains original source code for the paper accepted to CVPR 2021. PDF of the paper is available at [here](https://tarun005.github.io/files/papers/2012.08512.pdf) and more results are available in the [project video.](https://tarun005.github.io/files/papers/2012.08512.pdf)
+[[project page](https://tarun005.github.io/FLAVR/)] [[paper](https://arxiv.org/pdf/2012.08512.pdf)] [[Project Video](https://tarun005.github.io/files/papers/2012.08512.pdf)]
+
+FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories between frames to generate realistic high frame rate videos. This repository contains original source code for the paper accepted to CVPR 2021.
 
 ## Dependencies
 
@@ -20,7 +22,7 @@ We used the following to train and test the model.
 
 ## Training model on Vimeo-90K septuplets
 
-For training your own model on the Vimeo-90K dataset, use the following command. You can download the dataset from [this link](http://toflow.csail.mit.edu/)
+For training your own model on the Vimeo-90K dataset, use the following command. You can download the dataset from [this link](http://toflow.csail.mit.edu/). The results reported in the paper are trained using 8GPUs.
 ``` bash
 python main.py --batch_size 32 --test_batch_size 32 --dataset vimeo90K_septuplet --loss 1*L1 --max_epoch 200 --lr 0.0002 --data_root <dataset_path> --n_outputs 1
 ```
@@ -30,8 +32,6 @@ Training on GoPro dataset is similar, change `n_outputs` to 7 for 8x interpolati
 ## Testing using trained model.
 
 ### Trained Models.
-The trained FLAVR models for 2x interpolation is available [here](), 4x
-
 You can download the pretrained FLAVR models from the following links.
  Method        | Trained Model  |
 | ------------- |-----:|
@@ -90,7 +90,7 @@ The code is heavily borrowed from Facebook's official [PyTorch video repository]
 
 ## Cite
 
-If you use our work or the trained models, please consider citing us. 
+If this code helps in your work, please consider citing us. 
 ``` text
 @article{kalluri2021flavr,
   title={FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation},
