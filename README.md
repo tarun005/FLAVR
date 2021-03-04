@@ -58,6 +58,8 @@ To evaluate on the public benchmark of Middleburry, run the following.
 python Middleburry_Test.py --data_root <data_path> --load_from <model_path> 
 ```
 
+The interpolated images will be saved to the folder `Middleburry` in a format that can be readily uploaded to the [leaderboard](https://vision.middlebury.edu/flow/eval/results/results-i2.php). 
+
 ## SloMo-Filter on custom video
 
 You can use our trained models and apply the slomo filter on your own video (requires OpenCV 4.2.0). Use the following command.

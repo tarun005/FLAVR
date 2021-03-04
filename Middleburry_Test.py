@@ -87,8 +87,8 @@ def test(args):
             output_image = make_image(out.squeeze(0))
 
             import imageio
-            os.makedirs("MiddleburryRes/%s/"%name[0])
-            imageio.imwrite("MiddleburryRes/%s/frame10i11.png"%name[0], output_image) 
+            os.makedirs("Middleburry/%s/"%name[0])
+            imageio.imwrite("Middleburry/%s/frame10i11.png"%name[0], output_image) 
 
     
     return
