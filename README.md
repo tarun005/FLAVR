@@ -1,4 +1,4 @@
-# FLAVR
+# FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation (CVPR 2021)
 
 ![Eg1](./figures/baloon.gif)
 ![Eg2](./figures/sprite.gif)
