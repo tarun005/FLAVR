@@ -153,8 +153,7 @@ class BasicBlock(nn.Module):
 class VideoResNet(nn.Module):
 
     def __init__(self, block, conv_makers, layers,
-                 stem, num_classes=400,
-                 zero_init_residual=False):
+                 stem, zero_init_residual=False):
         """Generic resnet video generator.
 
         Args:
@@ -162,8 +161,6 @@ class VideoResNet(nn.Module):
             conv_makers (list(functions)): generator function for each layer
             layers (List[int]): number of blocks per layer
             stem (nn.Module, optional): Resnet stem, if None, defaults to conv-bn-relu. Defaults to None.
-            num_classes (int, optional): Dimension of the final FC layer. Defaults to 400.
-            zero_init_residual (bool, optional): Zero init bottleneck residual BN. Defaults to False.
         """
         super(VideoResNet, self).__init__()
         self.inplanes = 64
