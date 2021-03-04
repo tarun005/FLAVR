@@ -62,12 +62,12 @@ The interpolated images will be saved to the folder `Middleburry` in a format th
 
 ## SloMo-Filter on custom video
 
-You can use our trained models and apply the slomo filter on your own video (requires OpenCV 4.2.0). Use the following command.
+You can use our trained models and apply the slomo filter on your own video (requires OpenCV 4.2.0). Use the following command. If you want to convert a 30FPS video to 240FPS video, simply use the command
 ```bash
-python interpolate.py --input_video <input_video> --factor <2/4/8> --load_model <model_path>
+python interpolate.py --input_video <input_video> --factor 8 --load_model <model_path>
 ```
 
-Use a 2x interpolation model if the `factor` is 2 and 8x interpolation model if the `factor` is 8.
+by using our [pretrained model](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing) for 8x interpolation. For converting a 30FPS video to 60FPS video, use a 2x model with `factor` 2.
 
 ## Baseline Models
 
