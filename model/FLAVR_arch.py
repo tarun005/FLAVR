@@ -5,7 +5,7 @@ import importlib
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .resnet_3D_Unet import SEGating
+from .resnet_3D import SEGating
 
 def joinTensors(X1 , X2 , type="concat"):
 
@@ -122,7 +122,7 @@ class UNet_3D_3D(nn.Module):
         growth = 2 if joinType == "concat" else 1
         self.lrelu = nn.LeakyReLU(0.2, True)
 
-        unet_3D = importlib.import_module(".resnet_3D_Unet" , "model")
+        unet_3D = importlib.import_module(".resnet_3D" , "model")
         if n_outputs > 1:
             unet_3D.useBias = True
         self.encoder = getattr(unet_3D , block)(pretrained=False , bn=batchnorm)            

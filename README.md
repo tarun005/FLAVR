@@ -29,14 +29,24 @@ Training on GoPro dataset is similar, change `n_outputs` to 7 for 8x interpolati
 
 ## Testing using trained model.
 
+### Trained Models.
+The trained FLAVR models for 2x interpolation is available [here](), 4x
+
+You can download the pretrained FLAVR models from the following links.
+ Method        | Trained Model  |
+| ------------- |-----:|
+| **2x** | [Link](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing) |
+| **4x** |   [Link](https://drive.google.com/file/d/1btmNm4LkHVO9gjAaKKN9CXf5vP7h4hCy/view?usp=sharing)   |
+| **8x** |   [Link](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing)  |
+
 ### 2x Interpolation
-For testing a pretrained model on Vimeo-90K septuplet validation set, you can download the trained model from [here](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing). Then run the inference using the command
+For testing a pretrained model on Vimeo-90K septuplet validation set, you can run the following command:
 ```bash
 python test.py --dataset vimeo90K_septuplet --data_root <data_path> --load_from <saved_model> --n_outputs 1
 ```
 
 ### 8x Interpolation
-For testing a multiframe interpolation model, download the model trained on GoPro data [here](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing) and use the same command as above, with `n_outputs` changed to 7.
+For testing a multiframe interpolation model, use the same command as above with multiframe FLAVR model, with `n_outputs` changed accordingly.
 
 ### Time Benchmarking
 The testing script, in addition to computing PSNR and SSIM values, will also output the inference time and speed for interpolation. 
@@ -66,6 +76,9 @@ We also train models for many other previous works on our setting, and provide m
 | AdaCoF      | 35.3 | [Model](https://drive.google.com/file/d/19Y2TDZkSbRgNu-OItvqk3qn5cBWGg1RT/view?usp=sharing) |
 | QVI      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
 | DAIN |   34.19   | [Model](https://drive.google.com/file/d/1RfrwrHoSX_3RIdsoQgPg9IfGAJRhOoEp/view?usp=sharing)  |
+| SuperSloMo* | 32.90 | [Model](https://drive.google.com/file/d/1dR2at5DQO7w5s2tA5stC95Nmu_ezsPth/view?usp=sharing)
+
+* SuperSloMo is implemented using code repository from [here](https://github.com/avinashpaliwal/Super-SloMo). Other baselines are implemented using the official codebases. 
 
 ## Google Colab
 
@@ -73,7 +86,7 @@ Coming soon ... !
 
 ## Acknowledgement
 
-The code is heavily borrowed from Facebook's official [PyTorch video repository](https://github.com/facebookresearch/VMZ) and CAIN.
+The code is heavily borrowed from Facebook's official [PyTorch video repository](https://github.com/facebookresearch/VMZ) and [CAIN](https://github.com/myungsub/CAIN).
 
 ## Cite
 

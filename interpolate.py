@@ -66,7 +66,7 @@ def loadModel(model, checkpoint):
     model.load_state_dict(saved_state_dict)
 
 checkpoint = args.load_model
-from model.Unet_3D_3D_interpolate import UNet_3D_3D
+from model.FLAVR_arch import UNet_3D_3D
 
 model = UNet_3D_3D(model_name.lower() , n_inputs=4, n_outputs=n_outputs,  joinType=joinType , upmode=args.up_mode)
 loadModel(model , checkpoint)

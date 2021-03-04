@@ -34,7 +34,7 @@ from dataset.Middleburry import get_loader
 test_loader = get_loader(args.data_root, 1, shuffle=False, num_workers=args.num_workers)   
 
 
-from model.Unet_3D_3D_interpolate import UNet_3D_3D
+from model.FLAVR_arch import UNet_3D_3D
 print("Building model: %s"%args.model.lower())
 model = UNet_3D_3D(args.model.lower() , n_inputs=args.nbr_frame, n_outputs=args.n_outputs, joinType=args.joinType)
 
