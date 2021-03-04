@@ -34,7 +34,7 @@ Training on GoPro dataset is similar, change `n_outputs` to 7 for 8x interpolati
 ### Trained Models.
 You can download the pretrained FLAVR models from the following links.
  Method        | Trained Model  |
-| ------------- |-----:|
+| ------------- |:-----|
 | **2x** | [Link](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing) |
 | **4x** |   [Link](https://drive.google.com/file/d/1btmNm4LkHVO9gjAaKKN9CXf5vP7h4hCy/view?usp=sharing)   |
 | **8x** |   [Link](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing)  |
