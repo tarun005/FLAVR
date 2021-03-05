@@ -190,19 +190,18 @@ def main(args):
     for epoch in range(args.start_epoch, args.max_epoch):
         train(args, epoch)
 
-        if epoch +1 % args.val_freq == 0:
-            test_loss, psnr, _ = test(args, epoch)
+        test_loss, psnr, _ = test(args, epoch)
 
-            # save checkpoint
-            is_best = psnr > best_psnr
-            best_psnr = max(psnr, best_psnr)
-            myutils.save_checkpoint({
-                'epoch': epoch,
-                'state_dict': model.state_dict(),
-                'optimizer': optimizer.state_dict(),
-                'best_psnr': best_psnr,
-                'lr' : optimizer.param_groups[-1]['lr']
-            }, save_loc, is_best, args.exp_name)
+        # save checkpoint
+        is_best = psnr > best_psnr
+        best_psnr = max(psnr, best_psnr)
+        myutils.save_checkpoint({
+            'epoch': epoch,
+            'state_dict': model.state_dict(),
+            'optimizer': optimizer.state_dict(),
+            'best_psnr': best_psnr,
+            'lr' : optimizer.param_groups[-1]['lr']
+        }, save_loc, is_best, args.exp_name)
 
         # update optimizer policy
         scheduler.step(test_loss)
