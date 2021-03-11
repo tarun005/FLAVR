@@ -19,11 +19,11 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--input_video" , type=str , help="Path/WebURL to input video")
+parser.add_argument("--input_video" , type=str , required=True , help="Path/WebURL to input video")
 parser.add_argument("--youtube-dl" , type=str , help="Path to youtube_dl" , default=".local/bin/youtube-dl")
-parser.add_argument("--factor" , type=int , choices=[2,4,8] , help="How much interpolation needed. 2x/4x/8x.")
+parser.add_argument("--factor" , type=int , required=True , choices=[2,4,8] , help="How much interpolation needed. 2x/4x/8x.")
 parser.add_argument("--codec" , type=str , help="video codec" , default="mpeg4")
-parser.add_argument("--load_model" , type=str , help="path for stored model")
+parser.add_argument("--load_model" , required=True , type=str , help="path for stored model")
 parser.add_argument("--up_mode" , type=str , help="Upsample Mode" , default="transpose")
 parser.add_argument("--output_ext" , type=str , help="Output video format" , default=".avi")
 parser.add_argument("--input_ext" , type=str, help="Input video format", default=".mp4")
