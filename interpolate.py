@@ -35,6 +35,16 @@ args = parser.parse_args()
 input_video = args.input_video
 input_ext = args.input_ext
 
+from os import path
+
+if not args.is_folder and not path.exists(input_video):
+    print("Invalid input file path!")
+    exit()
+    
+if args.is_folder and not path.exists(input_video):
+    print("Invalid input directory path!")
+    exit()
+
 if args.output_ext != ".avi":
     print("Currently supporting only writing to avi. Try using ffmpeg for conversion to mp4 etc.")
 
@@ -146,7 +156,6 @@ new_video = [make_image(im_) for im_ in outputs]
 
 write_video_cv2(new_video , output_video , args.output_fps , (resizes[1] , resizes[0]))
 
-import os
 print("Writing to " , output_video.split(".")[0] + ".mp4")
 os.system('ffmpeg -hide_banner -loglevel warning -i %s %s'%(output_video , output_video.split(".")[0] + ".mp4"))
 os.remove(output_video)
