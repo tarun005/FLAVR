@@ -77,11 +77,12 @@ We also train models for many other previous works on our setting, and provide m
 | ------------- |:-------------:| -----:|
 | FLAVR       | 36.3    | [Model](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing)
 | AdaCoF      | 35.3 | [Model](https://drive.google.com/file/d/19Y2TDZkSbRgNu-OItvqk3qn5cBWGg1RT/view?usp=sharing) |
-| QVI      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
+| QVI*      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
 | DAIN |   34.19   | [Model](https://drive.google.com/file/d/1RfrwrHoSX_3RIdsoQgPg9IfGAJRhOoEp/view?usp=sharing)  |
 | SuperSloMo* | 32.90 | [Model](https://drive.google.com/file/d/1dR2at5DQO7w5s2tA5stC95Nmu_ezsPth/view?usp=sharing)
 
 * SuperSloMo is implemented using code repository from [here](https://github.com/avinashpaliwal/Super-SloMo). Other baselines are implemented using the official codebases. 
+* The numbers presented here for the baselines are slightly better than those reported in the paper.
 
 ## Google Colab
 
