@@ -1,11 +1,24 @@
-# FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation (CVPR 2021)
+# FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation
 
 ![Eg1](./figures/baloon.gif)
 ![Eg2](./figures/sprite.gif)
 
 [[project page](https://tarun005.github.io/FLAVR/)] [[paper](https://arxiv.org/pdf/2012.08512.pdf)] [[Project Video](https://youtu.be/TcQd0LCLCzo)]
 
-FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories between frames to generate realistic high frame rate videos. This repository contains original source code for the paper accepted to CVPR 2021.
+FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories between frames to generate realistic high frame rate videos. This repository contains original source code.
+
+## Update
+
+We corrected a bug in how we calculate the inference time, due to which there has been a *significant* change in the inference speed of FLAVR. Please take note of the updated speeds of our method.
+
+Method        | FPS on 512x512 Image (sec)
+| ------------- |:-------------:|
+| FLAVR       | 3.10  |
+| SuperSloMo | 3.33 |
+| QVI      |   1.02  |
+| DAIN |   0.77  |
+
+We will update the PDF version shortly to reflect these updated numbers.
 
 ## Dependencies
 
@@ -77,11 +90,12 @@ We also train models for many other previous works on our setting, and provide m
 | ------------- |:-------------:| -----:|
 | FLAVR       | 36.3    | [Model](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing)
 | AdaCoF      | 35.3 | [Model](https://drive.google.com/file/d/19Y2TDZkSbRgNu-OItvqk3qn5cBWGg1RT/view?usp=sharing) |
-| QVI      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
+| QVI*      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
 | DAIN |   34.19   | [Model](https://drive.google.com/file/d/1RfrwrHoSX_3RIdsoQgPg9IfGAJRhOoEp/view?usp=sharing)  |
 | SuperSloMo* | 32.90 | [Model](https://drive.google.com/file/d/1dR2at5DQO7w5s2tA5stC95Nmu_ezsPth/view?usp=sharing)
 
 * SuperSloMo is implemented using code repository from [here](https://github.com/avinashpaliwal/Super-SloMo). Other baselines are implemented using the official codebases. 
+* The numbers presented here for the baselines are slightly better than those reported in the paper.
 
 ## Google Colab
 
@@ -98,7 +112,7 @@ If this code helps in your work, please consider citing us.
 @article{kalluri2021flavr,
   title={FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation},
   author={Kalluri, Tarun and Pathak, Deepak and Chandraker, Manmohan and Tran, Du},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  booktitle={arxiv},
   year={2021}
 }
 ```
