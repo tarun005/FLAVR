@@ -57,12 +57,14 @@ def test(args):
             images = [img_.cuda() for img_ in images]
             gt = [g_.cuda() for g_ in gt_image]
 
+            torch.cuda.synchronize()
             start_time = time.time()
             out = model(images)
 
             out = torch.cat(out)
             gt = torch.cat(gt)
 
+            torch.cuda.synchronize()
             time_taken.append(time.time() - start_time)
 
             myutils.eval_metrics(out, gt, psnrs, ssims)
