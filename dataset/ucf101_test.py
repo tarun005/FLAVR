@@ -8,7 +8,7 @@ import random
 import glob
 
 
-class UCF_triplet(Dataset):
+class UCF(Dataset):
     def __init__(self, data_root , ext="png"):
 
         super().__init__()
@@ -37,7 +37,7 @@ class UCF_triplet(Dataset):
 
 def get_loader(data_root, batch_size, shuffle, num_workers, test_mode=True):
 
-    dataset = UCF_triplet(data_root)
+    dataset = UCF(data_root)
     return DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True)
 
 if __name__ == "__main__":
