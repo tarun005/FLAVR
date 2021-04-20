@@ -1,0 +1,11 @@
+alldirs/GOPR0384_11_00
+alldirs/GOPR0385_11_01
+alldirs/GOPR0410_11_00
+alldirs/GOPR0862_11_00
+alldirs/GOPR0869_11_00
+alldirs/GOPR0881_11_01
+alldirs/GOPR0384_11_05
+alldirs/GOPR0396_11_00
+alldirs/GOPR0854_11_00
+alldirs/GOPR0868_11_00
+alldirs/GOPR0871_11_00

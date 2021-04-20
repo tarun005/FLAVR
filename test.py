@@ -9,7 +9,6 @@ import pdb
 import torch
 import numpy as np
 from tqdm import tqdm
-from torch.utils.tensorboard import SummaryWriter
 
 import config
 import myutils
@@ -30,6 +29,9 @@ if args.cuda:
 if args.dataset == "vimeo90K_septuplet":
     from dataset.vimeo90k_septuplet import get_loader
     test_loader = get_loader('test', args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)
+elif args.dataset == "ucf101":
+    from dataset.ucf101_test import get_loader
+    test_loader = get_loader(args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 elif args.dataset == "gopro":
     from dataset.GoPro import get_loader
     test_loader = get_loader(args.data_root, args.test_batch_size, shuffle=False, num_workers=args.num_workers, test_mode=True, interFrames=args.n_outputs)    
