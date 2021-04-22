@@ -17,7 +17,7 @@ class UCF(Dataset):
         self.file_list = sorted(os.listdir(self.data_root))
 
         self.transforms = transforms.Compose([
-                transforms.CenterCrop(224),
+                transforms.CenterCrop((224,224)),
                 transforms.ToTensor(),
             ])
 

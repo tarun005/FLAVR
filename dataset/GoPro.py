@@ -39,10 +39,6 @@ class GoPro(Dataset):
     def __getitem__(self, idx):
 
         imgpaths = [os.path.join(self.data_root , fp) for fp in self.file_list[idx]]
-        # if random.random() > 0.5:
-        imgpaths = imgpaths[::-1] ## random temporal flip
-
-        # We can use compression based augmentations
 
         pick_idxs = list(range(0,self.setLength,self.interFrames+1))
         rem = self.interFrames%2
