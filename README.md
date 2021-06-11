@@ -7,9 +7,9 @@
 
 FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories between frames to generate realistic high frame rate videos. This repository contains original source code.
 
-## Update
+## Inference Times
 
-We corrected a bug in how we calculate the inference time, due to which there has been a *significant* change in the inference speed of FLAVR. Please take note of the updated speeds of our method.
+FLAVR delivers a better trade-off between speed and accuracy compared to prior frame interpolation methods.
 
 Method        | FPS on 512x512 Image (sec)
 | ------------- |:-------------:|
@@ -17,8 +17,6 @@ Method        | FPS on 512x512 Image (sec)
 | SuperSloMo | 3.33 |
 | QVI      |   1.02  |
 | DAIN |   0.77  |
-
-We will update the PDF version shortly to reflect these updated numbers.
 
 ## Dependencies
 
