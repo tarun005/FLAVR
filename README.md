@@ -97,7 +97,7 @@ We also train models for many other previous works on our setting, and provide m
 
 ## Google Colab
 
-Coming soon ... !
+A Colab notebook to try 2x slow-motion filtering on custom videos is available in the *notebooks* directory of this repo.
 
 ## Acknowledgement
 
