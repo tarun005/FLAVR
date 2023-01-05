@@ -1,9 +1,10 @@
 # FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation
+## WACV 2023 (Best Paper Finalist)
 
 ![Eg1](./figures/baloon.gif)
 ![Eg2](./figures/sprite.gif)
 
-[[project page](https://tarun005.github.io/FLAVR/)] [[paper](https://arxiv.org/pdf/2012.08512.pdf)] [[Project Video](https://youtu.be/TcQd0LCLCzo)]
+[[project page](https://tarun005.github.io/FLAVR/)] [[paper](https://arxiv.org/pdf/2012.08512.pdf)] [[Project Video](youtu.be/HFOY7CGpJRM)]
 
 FLAVR is a fast, flow-free frame interpolation method capable of single shot multi-frame prediction. It uses a customized encoder decoder architecture with spatio-temporal convolutions and channel gating to capture and interpolate complex motion trajectories between frames to generate realistic high frame rate videos. This repository contains original source code.
 
