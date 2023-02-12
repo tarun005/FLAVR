@@ -100,6 +100,10 @@ We also train models for many other previous works on our setting, and provide m
 
 A Colab notebook to try 2x slow-motion filtering on custom videos is available in the *notebooks* directory of this repo.
 
+## Model for Motion-Magnification
+
+Unfortunately, we cannot provide the trained models for motion-magnification at this time. We are working towards making a model available soon.
+
 ## Acknowledgement
 
 The code is heavily borrowed from Facebook's official [PyTorch video repository](https://github.com/facebookresearch/VMZ) and [CAIN](https://github.com/myungsub/CAIN).
