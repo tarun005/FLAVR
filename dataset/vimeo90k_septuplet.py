@@ -20,14 +20,15 @@ class VimeoSepTuplet(Dataset):
         self.training = is_training
         self.inputs = input_frames
 
-        train_fn = os.path.join(self.data_root, 'sep_trainlist.txt')
         test_fn = os.path.join(self.data_root, 'sep_testlist.txt')
-        with open(train_fn, 'r') as f:
-            self.trainlist = f.read().splitlines()
         with open(test_fn, 'r') as f:
             self.testlist = f.read().splitlines()
 
         if self.training:
+            train_fn = os.path.join(self.data_root, 'sep_trainlist.txt')
+            with open(train_fn, 'r') as f:
+                self.trainlist = f.read().splitlines()
+
             self.transforms = transforms.Compose([
                 transforms.RandomCrop(256),
                 transforms.RandomHorizontalFlip(0.5),
