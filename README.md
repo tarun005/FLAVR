@@ -47,9 +47,9 @@ Training on GoPro dataset is similar, change `n_outputs` to 7 for 8x interpolati
 You can download the pretrained FLAVR models from the following links.
  Method        | Trained Model  |
 | ------------- |:-----|
-| **2x** | [Link](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing) |
-| **4x** |   [Link](https://drive.google.com/file/d/1btmNm4LkHVO9gjAaKKN9CXf5vP7h4hCy/view?usp=sharing)   |
-| **8x** |   [Link](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing)  |
+| **2x** | [Link](https://drive.google.com/file/d/1IZe-39ZuXy3OheGJC-fT3shZocGYuNdH/view?usp=sharing) |
+| **4x** |   [Link](https://drive.google.com/file/d/1GARJK0Ti1gLH_O0spxAEqzbMwUKqE37S/view?usp=sharing)   |
+| **8x** |   [Link](https://drive.google.com/file/d/1xoZqWJdIOjSaE2DtH4ifXKlRwFySm5Gq/view?usp=sharing)  |
 
 ### 2x Interpolation
 For testing a pretrained model on Vimeo-90K septuplet validation set, you can run the following command:
@@ -79,15 +79,17 @@ You can use our trained models and apply the slomo filter on your own video (req
 python interpolate.py --input_video <input_video> --factor 8 --load_model <model_path>
 ```
 
-by using our [pretrained model](https://drive.google.com/drive/folders/1Gd2l69j7UC1Zua7StbUNcomAAhmE-xFb?usp=sharing) for 8x interpolation. For converting a 30FPS video to 60FPS video, use a 2x model with `factor` 2.
+by using our [pretrained model](https://drive.google.com/file/d/1xoZqWJdIOjSaE2DtH4ifXKlRwFySm5Gq/view?usp=sharing) for 8x interpolation. For converting a 30FPS video to 60FPS video, use a 2x model with `factor` 2.
 
 ## Baseline Models
 
 We also train models for many other previous works on our setting, and provide models for all these methods. Complete benchmarking scripts will also be released soon.
 
+**New [April 2024]**: Due to a shocking reduction of google drive allowance by Google to UCSD, I lost access to pre-trained models from other methods listed below. I hope to re-train them and publish new links in the future but don't count on it. Sorry!
+
  Method        | PSNR on Vimeo           | Trained Model  |
 | ------------- |:-------------:| -----:|
-| FLAVR       | 36.3    | [Model](https://drive.google.com/drive/folders/1M6ec7t59exOSlx_Wp6K9_njBlLH2IPBC?usp=sharing)
+| FLAVR       | 36.3    | [Model](https://drive.google.com/file/d/1IZe-39ZuXy3OheGJC-fT3shZocGYuNdH/view?usp=sharing)
 | AdaCoF      | 35.3 | [Model](https://drive.google.com/file/d/19Y2TDZkSbRgNu-OItvqk3qn5cBWGg1RT/view?usp=sharing) |
 | QVI*      |   35.15    | [Model](https://drive.google.com/file/d/1v2u5diGcvdTLhck8Xwu0baI4zm0JBJhI/view?usp=sharing)   |
 | DAIN |   34.19   | [Model](https://drive.google.com/file/d/1RfrwrHoSX_3RIdsoQgPg9IfGAJRhOoEp/view?usp=sharing)  |
@@ -112,10 +114,10 @@ The code is heavily borrowed from Facebook's official [PyTorch video repository]
 
 If this code helps in your work, please consider citing us. 
 ``` text
-@article{kalluri2021flavr,
+@article{kalluri2023flavr,
   title={FLAVR: Flow-Agnostic Video Representations for Fast Frame Interpolation},
   author={Kalluri, Tarun and Pathak, Deepak and Chandraker, Manmohan and Tran, Du},
-  booktitle={arxiv},
-  year={2021}
+  booktitle={WACV},
+  year={2023}
 }
 ```
